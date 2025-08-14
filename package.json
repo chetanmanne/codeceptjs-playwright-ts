@@ -1,0 +1,24 @@
+{
+  "name": "codeceptjs-playwright-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx codeceptjs run-mutliple default"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@codeceptjs/allure-legacy": "^1.0.2",
+    "codeceptjs": "^3.7.3",
+    "joi": "^18.0.0",
+    "openai": "^4.104.0",
+    "playwright": "^1.54.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
