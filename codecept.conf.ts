@@ -65,7 +65,7 @@ export const config: CodeceptJS.MainConfig = {
     ai: {
       request: async messages => {
       const OpenAI = require('openai')
-      const openai = new OpenAI({ apiKey: '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' })
+      const openai = new OpenAI({ apiKey: 'Sample' })
       const completion = await openai.chat.completions.create({
         model: 'gpt-5',
         messages,
