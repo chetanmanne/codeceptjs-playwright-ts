@@ -16,6 +16,6 @@ Scenario('search for southwest', async ({ I }) => {
   I.waitForElement("//div[contains(text(),'Find a vacation')]");
 
   // Verify "Promo code"
-  I.see('Promo code', 'div[for="promoCode"]');
+  I.see('Promo code', 'label[for="promoCode"]');
  
 });
