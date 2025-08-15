@@ -3,7 +3,7 @@ Feature('southwest search');
 Scenario('search for southwest', async ({ I }) => {
   // Goes to follow link because base url will be set in config
   I.amOnPage('/');
- // pause();
+  //pause();
   // Give time for modals to appear
   I.wait(3);
 

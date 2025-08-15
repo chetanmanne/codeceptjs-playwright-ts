@@ -1,14 +1,17 @@
 import { setHeadlessWhen, setCommonPlugins } from '@codeceptjs/configure';
 const{devicces} = require('playwright');
+
+
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
 setHeadlessWhen(process.env.HEADLESS);
-
 // enable all common plugins https://github.com/codeceptjs/configure#setcommonplugins
 setCommonPlugins();
+require('./heal');
 
 export const config: CodeceptJS.MainConfig = {
-  tests: './testCases/api/reqres_test.ts',
+
+  tests: './testCases/web/*_test.ts',
   output: './output',
   helpers: {
     Playwright: {
@@ -60,12 +63,16 @@ export const config: CodeceptJS.MainConfig = {
     allure: {
       enabled: true,
       require: '@codeceptjs/allure-legacy'
+    },
+    heal: {
+      enabled: true,
+      outputDir: './output/heal'
     }
   },
     ai: {
       request: async messages => {
       const OpenAI = require('openai')
-      const openai = new OpenAI({ apiKey: 'Sample' })
+      const openai = new OpenAI({ apiKey: 'sample' })
       const completion = await openai.chat.completions.create({
         model: 'gpt-5',
         messages,
