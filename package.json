@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx codeceptjs run-mutliple default"
-  },
+  "test": "codeceptjs run --config codecept.conf.ts",
+  "test:ai": "codeceptjs run --config codecept.conf.ts --ai",
+  "allure:gen": "allure generate ./output/allure-results -o ./output/allure --clean",
+  "allure:open": "allure open ./output/allure",
+  "test:report": "npm run test && npm run allure:gen && npm run allure:open",
+  "test:report:ai": "npm run test:ai && npm run allure:gen && npm run allure:open"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

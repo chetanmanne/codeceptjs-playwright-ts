@@ -1,10 +1,24 @@
-// in this file you can append custom step methods to 'I' object
+// steps_file.ts
+import { container } from 'codeceptjs';
 
-export = function() {
+export = function () {
   return actor({
+    async acceptNextDialog() {
+      const pw: any = container.helpers('Playwright');   // ← get helper from container
+      const { page } = pw;
+      page.once('dialog', async d => { await d.accept(); });
+    },
 
-    // Define custom steps here, use 'this' to access default methods of I.
-    // It is recommended to place a general 'login' function here.
+    async dismissNextDialog() {
+      const pw: any = container.helpers('Playwright');
+      const { page } = pw;
+      page.once('dialog', async d => { await d.dismiss(); });
+    },
 
+    async answerNextPrompt(value: string) {
+      const pw: any = container.helpers('Playwright');
+      const { page } = pw;
+      page.once('dialog', async d => { await d.accept(value); });
+    },
   });
-}
+};

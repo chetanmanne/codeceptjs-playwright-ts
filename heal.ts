@@ -6,10 +6,10 @@ heal.addRecipe('ai', {
     html: ({ I }) => I.grabHTMLFrom('body'),
   },
   suggest: true,
-  steps: ['click', 'fillField', 'appendField', 'selectOption', 'attachFile', 'checkOption', 'uncheckOption', 'doubleClick','see'],
+  steps: ['click', 'fillField', 'appendField', 'selectOption', 'attachFile', 'checkOption', 'uncheckOption', 'doubleClick', 'see', 'seeInTitle','toHaveTitle'],
   fn: async args => {
     console.log('AI Heal Recipe:', await ai.healFailedStep(args))
-    
+
     return ai.healFailedStep(args)
   },
 })

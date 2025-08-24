@@ -1,5 +1,5 @@
 import { setHeadlessWhen, setCommonPlugins } from '@codeceptjs/configure';
-const { devicces } = require('playwright');
+const{devicces} = require('playwright');
 
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
@@ -9,17 +9,17 @@ setCommonPlugins();
 require('./heal');
 
 export const config: CodeceptJS.MainConfig = {
-  tests: './testCases/web/alert.popup_test.ts',
+
+  tests: './testCases/web/*_test.ts',
   output: './output',
-  require: ['ts-node/register'], 
   helpers: {
     Playwright: {
-      browser: 'chromium',
-     // channel: 'msedge',
+     // browser: 'chromium',
       url: 'https://www.southwest.com/',
       show: true
+     // emulate: devicces['Iphone 11']
     },
-
+   // LogBrowserHelper: { require: './helpers/LogBrowserHelper.ts' },
     REST: {
       endpoint: 'https://jsonplaceholder.typicode.com', // your API base URL
       defaultHeaders: {
@@ -29,16 +29,14 @@ export const config: CodeceptJS.MainConfig = {
     JSONResponse: {} // Helper to handle JSON responses
   },
 
-  multiple: {
-    basic: {
-      browsers: [
-        { browser: 'chromium' },                // Chrome
-        { browser: 'chromium', channel: 'msedge' }, // Edge
-        { browser: 'firefox' },              // Firefox
-        // { browser: 'webkit' }                   // Safari-like
-      ]
-    }
-  },
+   multiple: {
+      default: {
+        browsers: ['firefox'],
+      },
+      all: {
+        browsers: ['chromium', 'firefox', 'webkit'],
+      }
+    },
   include: {
     I: './steps_file.ts'
   },
@@ -59,24 +57,20 @@ export const config: CodeceptJS.MainConfig = {
     allure: {
       enabled: true,
       require: '@codeceptjs/allure-legacy',
-      outputDir: './output/allure-results',
-      disableWebdriverStepsReporting: false,
-      disableWebdriverScreenshotsReporting: false
+      outputDir: './output/allure-results'
     },
     heal: {
       enabled: true,
       outputDir: './output/heal'
     }
   },
-  ai: {
-    request: async messages => {
+    ai: {
+      request: async messages => {
       const OpenAI = require('openai')
-      const openai = new OpenAI({ apiKey: 'Sample' })
+      const openai = new OpenAI({ apiKey: 'sample' })
       const completion = await openai.chat.completions.create({
         model: 'gpt-5',
         messages,
       });
-      return completion?.choices[0]?.message?.content
-    }
-  }
+      return completion?.choices[0]?.message?.content}}
 }
