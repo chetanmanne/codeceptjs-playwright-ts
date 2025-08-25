@@ -1,7 +1,9 @@
 // steps_file.ts
 import { container } from 'codeceptjs';
+import { click } from 'webdriverio/build/commands/element';
 
 export = function () {
+
   return actor({
     async acceptNextDialog() {
       const pw: any = container.helpers('Playwright');   // ← get helper from container

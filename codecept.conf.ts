@@ -9,7 +9,7 @@ setCommonPlugins();
 require('./heal');
 
 export const config: CodeceptJS.MainConfig = {
-  tests: './testCases/web/alert.popup_test.ts',
+  tests: './testCases/web/_test.ts',
   output: './output',
   require: ['ts-node/register'], 
   helpers: {
